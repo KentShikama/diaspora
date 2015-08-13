@@ -909,22 +909,11 @@ describe User, :type => :model do
         FactoryGirl.create(:user)
       }
 
-      context "with autofollow sharing enabled" do
-        it "should start sharing with autofollow account" do
-          AppConfig.settings.autofollow_on_join = true
-          AppConfig.settings.autofollow_on_join_user = "one"
-
-          expect(Person).to receive(:find_or_fetch_by_identifier).with("one")
-
-          user.seed_aspects
-        end
-      end
-
       context "with sharing with diasporahq enabled" do
         it "should not start sharing with the diasporahq account" do
           AppConfig.settings.autofollow_on_join = false
 
-          expect(Person).not_to receive(:find_or_fetch_by_identifier)
+          expect(Webfinger).not_to receive(:new)
 
           user.seed_aspects
         end

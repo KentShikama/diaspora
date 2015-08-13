@@ -233,6 +233,7 @@ en:
       work: "Work"
       acquaintances: "Acquaintances"
       friends: "Friends"
+      nomic: "Nomic"
     index:
       donate: "Donate"
       keep_pod_running: "Keep %{pod} running fast and buy servers their coffee fix with a monthly donation!"

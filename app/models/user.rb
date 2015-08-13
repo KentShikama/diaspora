@@ -463,13 +463,20 @@ class User < ActiveRecord::Base
     self.aspects.create(:name => I18n.t('aspects.seed.family'))
     self.aspects.create(:name => I18n.t('aspects.seed.friends'))
     self.aspects.create(:name => I18n.t('aspects.seed.work'))
-    aq = self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
+    self.aspects.create(:name => I18n.t('aspects.seed.acquaintances'))
+    nomic = self.aspects.create(:name => I18n.t('aspects.seed.nomic'))
 
     if AppConfig.settings.autofollow_on_join?
-      default_account = Person.find_or_fetch_by_identifier(AppConfig.settings.autofollow_on_join_user)
-      self.share_with(default_account, aq) if default_account
+      Webfinger.new(AppConfig.settings.autofollow_on_join_user).fetch.tap do |default_account|
+        default_account_nomic_aspect = default_account.owner.aspects.find_by(name: "Nomic")
+        if default_account_nomic_aspect
+          default_account_nomic_aspect.contacts.all.each do |contact|
+            self.share_with(contact.person, nomic)
+          end
+        end
+        self.share_with(default_account, nomic)
+      end
     end
-    aq
   end
 
   def send_welcome_message
