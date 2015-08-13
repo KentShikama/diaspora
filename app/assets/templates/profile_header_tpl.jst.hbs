@@ -50,13 +50,6 @@
           </span>
         {{/if}}
 
-        {{#if is_mutual}}
-          {{!-- create private conversation with person --}}
-          <span class="profile_button">
-            <i id="message_button" class="entypo-mail profile-header-icon" title="{{t 'people.message'}}" data-placement="bottom" data-toggle="modal"></i>
-          </span>
-        {{/if}}
-
         {{#unless is_blocked}}
           {{!-- ignore the person --}}
           <a href="#" class="profile_button" rel="nofollow">
