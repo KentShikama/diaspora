@@ -57,7 +57,7 @@ class StreamsController < ApplicationController
       @stream ||= stream_klass.new(current_user, :max_time => max_time)
     end
 
-    @nomic_laws = Nomic::Law.where(repealed: false)
+    @nomic_laws = Nomic::Law.where(repealed: false).map{|law| law.superseding_law.nil? ? law : nil }.compact
 
     respond_with do |format|
       format.html { render 'streams/main_stream' }
