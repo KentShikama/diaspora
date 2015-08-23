@@ -12,14 +12,6 @@ Feature: User manages contacts
     And I click on selector ".btn-primary" in the aspect creation modal
     Then I should see "Dorm Mates" within "#aspect_nav"
 
-  Scenario: creating an aspect from homepage
-    Given I am signed in
-    And I go to the aspects page
-    When I follow "Add an aspect"
-    And I fill in "aspect_name" with "losers" in the aspect creation modal
-    And I click on selector ".btn-primary" in the aspect creation modal
-    Then I should see "losers" within "#aspect_nav"
-
   Scenario: deleting an aspect from contacts index
     Given I am signed in
     And I have an aspect called "People"

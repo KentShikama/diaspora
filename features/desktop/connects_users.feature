@@ -59,23 +59,6 @@ Feature: following and being followed
     Then I should have 1 contacts in "Besties"
     And I should see "I am following you back"
 
-  Scenario: adding someone who follows you while creating a new aspect
-    When I sign in as "alice@alice.alice"
-    And I am on "bob@bob.bob"'s page
-
-    And I press the first ".aspect_membership_dropdown .dropdown-toggle"
-    And I press the first "a" within ".add_aspect"
-
-    And I fill in "aspect_name" with "Super People" in the aspect creation modal
-    And I click on selector ".btn-primary" in the aspect creation modal
-
-    When I go to the home page
-    Then I should have 1 contact in "Super People"
-    Then I sign out
-
-    When I sign in as "bob@bob.bob"
-    Then I should have 1 contact in "Besties"
-
   Scenario: interacting with the profile page of someone you follow who is not following you
     When I sign in as "bob@bob.bob"
     And I am on "alice@alice.alice"'s page

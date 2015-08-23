@@ -888,39 +888,6 @@ describe User, :type => :model do
     end
   end
 
-  describe "#seed_aspects" do
-    describe "create aspects" do
-      let(:user) {
-        user = FactoryGirl.create(:user)
-        user.seed_aspects
-        user
-      }
-
-      [I18n.t('aspects.seed.family'), I18n.t('aspects.seed.friends'),
-       I18n.t('aspects.seed.work'), I18n.t('aspects.seed.acquaintances')].each do |aspect_name|
-        it "creates an aspect named #{aspect_name} for the user" do
-          expect(user.aspects.find_by_name(aspect_name)).not_to be_nil
-        end
-      end
-    end
-
-    describe "autofollow sharing" do
-      let(:user) {
-        FactoryGirl.create(:user)
-      }
-
-      context "with sharing with diasporahq enabled" do
-        it "should not start sharing with the diasporahq account" do
-          AppConfig.settings.autofollow_on_join = false
-
-          expect(Webfinger).not_to receive(:new)
-
-          user.seed_aspects
-        end
-      end
-    end
-  end
-
   describe "#send_welcome_message" do
     let(:user) { FactoryGirl.create(:user) }
     let(:podmin) { FactoryGirl.create(:user) }
