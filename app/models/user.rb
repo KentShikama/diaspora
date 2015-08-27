@@ -467,7 +467,7 @@ class User < ActiveRecord::Base
     nomic = self.aspects.create(:name => I18n.t('aspects.seed.nomic'))
 
     if AppConfig.settings.autofollow_on_join?
-      Webfinger.new(AppConfig.settings.autofollow_on_join_user).fetch.tap do |default_account|
+      User.find_by(id: 1).person.tap do |default_account|
         default_account_nomic_aspect = default_account.owner.aspects.find_by(name: "Nomic")
         if default_account_nomic_aspect
           default_account_nomic_aspect.contacts.all.each do |contact|
