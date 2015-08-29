@@ -81,8 +81,18 @@ FactoryGirl.define do
     after(:create) { |u|  FactoryGirl.create(:aspect, :user => u) }
   end
 
+  factory :user_with_nomic_aspect, :parent => :user do
+    id 1
+    after(:create) { |u|  FactoryGirl.create(:nomic_aspect, :user => u) }
+  end
+
   factory :aspect do
     name "generic"
+    user
+  end
+
+  factory :nomic_aspect, class: "Aspect" do
+    name "Nomic"
     user
   end
 
@@ -137,6 +147,28 @@ FactoryGirl.define do
         end
       end
     end
+  end
+
+  factory :mutable_law, class: Nomic::Law do
+    association :author, factory: :person
+    rule_number 100
+    text "Law 100"
+    mutable true
+  end
+
+  factory :immutable_law, class: Nomic::Law do
+    association :author, factory: :person
+    rule_number 101
+    text "Law 101"
+    mutable false
+  end
+
+  factory :superseding_mutable_law, class: Nomic::Law do
+    association :author, factory: :person
+    association :superseded_law, factory: :mutable_law
+    rule_number 300
+    text "Law 300 superseding mutable law"
+    mutable true
   end
 
   factory(:location) do

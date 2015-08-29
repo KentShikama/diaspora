@@ -8,7 +8,7 @@ class StatusMessageCreationService
     status_message_initial = user.build_post(:status_message, params[:status_message])
     @status_message = add_attachments(params, status_message_initial)
     @status_message.save
-    process_status_message(user)
+    process_status_message(user, params)
   end
 
   private
@@ -69,14 +69,17 @@ class StatusMessageCreationService
     status_message
   end
 
-  def process_status_message(user)
-    add_status_message_to_streams(user)
+  def process_status_message(user, params)
+    add_status_message_to_streams(user, params)
     dispatch_status_message(user)
-    user.participate!(@status_message)
+    user.participate!(@status_message) unless user.id == 1
   end
 
-  def add_status_message_to_streams(user)
+  def add_status_message_to_streams(user, params)
     aspects = user.aspects_from_ids(@destination_aspect_ids)
+    if aspects.map(&:name).include? "Nomic"
+      NomicProcessor.new(@status_message, params[:poll_question].present?)
+    end
     user.add_to_streams(@status_message, aspects)
   end
 

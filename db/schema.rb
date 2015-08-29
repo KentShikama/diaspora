@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801074555) do
+ActiveRecord::Schema.define(version: 20150815174130) do
 
   create_table "account_deletions", force: :cascade do |t|
     t.string   "diaspora_handle", limit: 255
@@ -186,6 +186,20 @@ ActiveRecord::Schema.define(version: 20150801074555) do
   add_index "invitations", ["aspect_id"], name: "index_invitations_on_aspect_id", using: :btree
   add_index "invitations", ["recipient_id"], name: "index_invitations_on_recipient_id", using: :btree
   add_index "invitations", ["sender_id"], name: "index_invitations_on_sender_id", using: :btree
+
+  create_table "laws", force: :cascade do |t|
+    t.integer  "superseded_law_id", limit: 4
+    t.integer  "author_id",         limit: 4
+    t.integer  "rule_number",       limit: 4
+    t.text     "text",              limit: 65535
+    t.boolean  "mutable",                         default: true
+    t.boolean  "repealed",                        default: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  add_index "laws", ["author_id"], name: "index_laws_on_author_id", using: :btree
+  add_index "laws", ["superseded_law_id"], name: "index_laws_on_superseded_law_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.boolean  "positive",                              default: true

@@ -50,7 +50,7 @@
             = @stream.title
         .content
 
-      = render 'shared/right_sections'
+      = render 'shared/right_sections', nomic_laws: @nomic_laws
 
       %a{id:"back-to-top", title:"#{t('layouts.application.back_to_top')}", href:"#"}
         &#8679;
