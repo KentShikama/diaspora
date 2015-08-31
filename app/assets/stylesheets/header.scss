@@ -5,11 +5,20 @@ header > .dark-header > nav {
   .navbar-brand {
     font-weight: bold;
     font-size: $font-size-h3;
+    margin-left: 10px !important;
+    width: 130px;
+    background: image-url("logo.png") no-repeat right center;
+    &:hover, &:active {
+      background: image-url("logo-active.png") no-repeat right center;
+    }
   }
 
   @media (max-width: $grid-float-breakpoint-max) {
     .col-lg-10 { padding: 0; }
-    .navbar-header > .nav li { display: inline-block !important; }
+    .navbar-header > .nav li {
+      margin-left: 10px;
+      display: inline-block !important;
+    }
     .nav-badge {
       color: $navbar-inverse-link-color;
       padding-left: 12px;
@@ -26,6 +35,9 @@ header > .dark-header > nav {
     }
   }
   @media (min-width: $grid-float-breakpoint) {
+    .navbar-nav.navbar-left:first-child li {
+      margin-left: 15px;
+    }
     input[type="search"] {
       @include transition(width);
       margin-top: 2px;
@@ -144,4 +156,8 @@ header > .dark-header > nav {
       margin-right: 10px;
     }
   }
+}
+
+.brand-image {
+  padding-top: 3px;
 }

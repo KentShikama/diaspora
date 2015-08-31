@@ -26,8 +26,7 @@ Feature: private conversations
     And "Alice Awesome" should be part of active conversation
     And I should see "hello, alice!" within ".stream_container"
     When I sign in as "alice@alice.alice"
-    Then I should have 1 unread private message
-    And I should have 1 email delivery
+    Then I should have 1 email delivery
     When I reply with "hey, how you doing?"
     Then I should see "hey, how you doing?" within ".stream_container"
 
@@ -41,5 +40,4 @@ Feature: private conversations
     When I reply with "hey, how you doing?" using keyboard shortcuts
     Then I should see "hey, how you doing?" within ".stream_container"
     When I sign in as "alice@alice.alice"
-    Then I should have 2 unread private messages
-    And I should have 2 email delivery
+    Then I should have 2 email delivery

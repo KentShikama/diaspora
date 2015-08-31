@@ -78,6 +78,10 @@ a.tag { word-break: break-all; }
   height: 50px;
 }
 
+.huge-horizontal-spacer {
+  height: 100px;
+}
+
 /* responsive */
 @media (max-width: 767px) {
   body {

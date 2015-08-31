@@ -1,0 +1,12 @@
+- content_for(:head) do
+  = stylesheet_link_tag :home, media: "all"
+
+.outer-container
+  .inner-container
+    = link_to "Join", new_user_registration_path, class: 'join-circle'
+    .login-circle
+      = render partial: "sessions/new"
+    .about-circle
+      = "A nomic playground built on top of Kent's personal Diaspora pod, a part of a fully decentralized privacy-aware social network"
+    .center-image
+      = image_tag "social-nomic.png"

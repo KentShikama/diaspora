@@ -102,4 +102,4 @@ Feature: following and being followed
     When I go to "bob@bob.bob"'s page
     Then I should see "All aspects"
     Then I should see a "#mention_button" within "#profile_buttons"
-    Then I should see a "#message_button" within "#profile_buttons"
+    # Then I should see a "#message_button" within "#profile_buttons"

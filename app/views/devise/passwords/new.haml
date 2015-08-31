@@ -4,9 +4,8 @@
 #forgot_password
   .container
     .text-center
-      .logos-asterisk
-      %h1
-        = AppConfig.settings.pod_name
+      .huge-horizontal-spacer
+      = image_tag "logo-medium.png"
 
     = form_for(resource, as: resource_name, url: password_path(resource_name), html: {class: "form-horizontal block-form"}, autocomplete: 'off') do |f|
       - if !devise_error_messages!.empty?
@@ -27,6 +26,3 @@
                        aria:           {labelledby: "passwordLabel"}
 
       = f.submit t('devise.passwords.new.send_password_instructions'), class: "btn btn-block btn-default"
-
-    .text-center
-      = link_to t('devise.shared.links.sign_in'), new_session_path(resource_name)

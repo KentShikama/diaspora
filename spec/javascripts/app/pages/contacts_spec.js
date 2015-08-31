@@ -27,18 +27,18 @@ describe("app.pages.Contacts", function(){
 
     it('updates the title for the tooltip', function() {
       expect(this.chatIcon.attr("data-original-title")).toBe(
-        Diaspora.I18n.t("contacts.aspect_chat_is_not_enabled")
+        Diaspora.I18n.t("contacts.aspect_chat_is_enabled")
       );
       this.chatToggle.trigger("click");
       expect(this.chatIcon.attr("data-original-title")).toBe(
-        Diaspora.I18n.t("contacts.aspect_chat_is_enabled")
+        Diaspora.I18n.t("contacts.aspect_chat_is_not_enabled")
       );
     });
 
     it("toggles the chat icon", function() {
-      expect(this.chatIcon.hasClass("enabled")).toBeFalsy();
-      this.chatToggle.trigger("click");
       expect(this.chatIcon.hasClass("enabled")).toBeTruthy();
+      this.chatToggle.trigger("click");
+      expect(this.chatIcon.hasClass("enabled")).toBeFalsy();
     });
   });
 

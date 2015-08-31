@@ -126,7 +126,7 @@ Diaspora::Application.routes.draw do
   get 'users/edit' => redirect('/user/edit')
 
   devise_for :users, :controllers => {:registrations => "registrations",
-                                      :sessions      => "sessions"}
+                                      :sessions      => "home"}
 
   #legacy routes to support old invite routes
   get 'users/invitation/accept' => 'invitations#edit'
@@ -218,10 +218,13 @@ Diaspora::Application.routes.draw do
   end
 
   get 'community_spotlight' => "contacts#spotlight", :as => 'community_spotlight'
-  # Mobile site
 
-  get 'mobile/toggle', :to => 'home#toggle_mobile', :as => 'toggle_mobile'
-  get "/m", to: "home#force_mobile", as: "force_mobile"
+  # Mobile site
+  devise_scope :user do
+    root to: "home#new"
+    get 'mobile/toggle', :to => 'home#toggle_mobile', :as => 'toggle_mobile'
+    get "/m", to: "home#force_mobile", as: "force_mobile"
+  end
 
   # Help
   get 'help' => 'help#faq', :as => 'help'
@@ -242,9 +245,6 @@ Diaspora::Application.routes.draw do
 
   # Relay
   get ".well-known/x-social-relay" => "social_relay#well_known"
-
-  # Startpage
-  root :to => 'home#show'
 
   api_version(module: "Api::V0", path: {value: "api/v0"}, default: true) do
     match "user", to: "users#show", via: %i(get post)

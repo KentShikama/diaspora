@@ -1,44 +1,50 @@
-#   Copyright (c) 2010-2012, Diaspora Inc.  This file is
+#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
 require "spec_helper"
 
 describe HomeController, type: :controller do
-  describe "#show" do
-    it "does not redirect for :html" do
-      get :show
-      expect(response).not_to be_redirect
+  include Devise::TestHelpers
+
+  let(:mock_access_token) { Object.new }
+
+  before do
+    @request.env["devise.mapping"] = Devise.mappings[:user]
+    @user = alice
+    @user.password = "evankorth"
+    @user.password_confirmation = "evankorth"
+    @user.save
+  end
+
+  describe "#create" do
+    it "redirects to /stream for a non-mobile user" do
+      post :create, {"user" => {"remember_me" => "0", "username" => @user.username, "password" => "evankorth"}}
+      expect(response).to be_redirect
+      expect(response.location).to match /^#{stream_url}\??$/
     end
 
-    it "redirects for :mobile" do
-      get :show, format: :mobile
-      expect(response).to redirect_to(user_session_path)
-    end
-
-    context "redirection" do
-      before do
-        sign_in alice
-      end
-
-      it "points to the stream if a user has contacts" do
-        get :show, home: true
-        expect(response).to redirect_to(stream_path)
-      end
+    it "redirects to /stream for a mobile user" do
+      request.headers["X_MOBILE_DEVICE"] = true
+      post :create, {"user" => {"remember_me" => "0", "username" => @user.username, "password" => "evankorth"}}
+      expect(response).to be_redirect
+      expect(response.location).to match /^#{stream_url}\??$/
     end
   end
 
-  describe "#toggle_mobile" do
-    it "changes :mobile to :html" do
-      session[:mobile_view] = true
-      get :toggle_mobile
-      expect(session[:mobile_view]).to be false
+  describe "#destroy" do
+    before do
+      sign_in :user, @user
+    end
+    it "redirects to / for a non-mobile user" do
+      delete :destroy
+      expect(response).to redirect_to new_user_session_path
     end
 
-    it "changes :html to :mobile" do
-      session[:mobile_view] = nil
-      get :toggle_mobile
-      expect(session[:mobile_view]).to be true
+    it "redirects to / for a mobile user" do
+      request.headers["X_MOBILE_DEVICE"] = true
+      delete :destroy
+      expect(response).to redirect_to root_path
     end
   end
 end

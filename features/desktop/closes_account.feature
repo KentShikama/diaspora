@@ -9,12 +9,3 @@ Feature: Close account
     When I go to the users edit page
     And I click on selector "#close_account"
     Then I should see a modal
-    And I should see "Hey, please don’t go!" within "#closeAccountModal"
-    When I put in my password in "close_account_password"
-    And I press "close_account_confirm"
-    And I confirm the alert
-    Then I should be on the new user session page
-
-    When I try to sign in manually
-    Then I should be on the new user session page
-    And I should see a flash message with a warning

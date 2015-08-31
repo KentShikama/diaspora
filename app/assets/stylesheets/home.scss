@@ -1,86 +1,80 @@
-@import "bootstrap-variables";
-
-body {
-  margin-top: $navbar-height;
-  background-color: white;
-  background-image : none;
+body.page-home.action-new {
+  margin: 0;
+  font-size: 13px;
+  .outer-container {
+    width: 100%;
+    height: 100vh;
+  }
+  .inner-container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 auto;
+    width: 1112px;
+    height: 678px;
+  }
 }
 
-li {
-  list-style: none;
-}
-
-footer h3 {
-  margin-bottom: 25px;
-  text-align: center;
-}
-
-footer {
-  margin-bottom: 12px;
-  padding: 42px;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  width: auto
-}
-
-#header {
-  /* Hack to hide the header */
-  box-shadow:none;
-  border:none;
-  background:none;
-
+.about-circle {
+  position: absolute;
   left: 0px;
-  padding: 15px 0px;
-}
-
-#header img {
-  margin-left: 15px;
-}
-
-#login-link {
-  float: right;
-  margin-right: 15px;
-}
-
-#steps {
+  top: 306px;
+  width: 200px;
+  height: 200px;
+  padding: 26px 32px;
+  border: 6px solid #333333;
+  color: #333333;
+  border-radius: 50%;
   text-align: center;
+  font-family: Courier, Georgia, Times, 'Times New Roman', serif;
+  font-size: 0.98em;
+  line-height: 1.2;
+  font-weight: bold;
+  letter-spacing: -0.6px;
 }
 
-#banner {
-  border-bottom : 1px solid #ccc;
-  border-top : 1px solid #eee;
-  padding : 30px;
-  margin-top: 20px;
+.center-image {
+  position: absolute;
+  left: 194px;
+  top: 94px;
+  z-index: -1;
+}
+
+.login-circle {
+  position: absolute;
+  left: 792px;
+  top: 364px;
+  padding: 68px 24px;
+  width: 320px;
+  height: 320px;
+  border: 8px solid #333333;
+  color: #333333;
+  border-radius: 50%;
+  font-family: Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+  & a {
+    color: #333333;
+  }
+  form {
+    input, i {
+      color: #333333 !important;
+      border-color: #333333 !important;
+    }
+  }
+}
+
+.join-circle {
+  position: absolute;
+  left: 420px;
+  top: 0px;
+  width: 120px;
+  height: 120px;
+  border: 5px solid #333333;
+  color: #333333 !important;
+  border-radius: 50%;
+  padding: 36px 27px;
   text-align: center;
-
-  box-shadow : 0 9px 15px -10px rgba(0,0,0,0.7);
-}
-
-#links {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-#links .section {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-  vertical-align: top;
-  width: 24%;
-  max-width: 24%;
-}
-
-#change-page {
-  color: #999;
-  text-align: center;
-  font-style: italic;
-}
-
-.helpful {
-  cursor: help;
-}
-
-.row {
-  margin-bottom: 60px;
+  text-decoration: none;
+  font-family: Courier, Georgia, Times, 'Times New Roman', serif;
+  font-size: 2em;
+  letter-spacing: -1.5px;
 }

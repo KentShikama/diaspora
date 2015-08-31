@@ -16,13 +16,6 @@ Feature: oembed
     When I click the publisher and post "http://youtube.com/watch?v=M3r2XDceM6A&format=json"
     Then I should see a video player
 
-  Scenario: Post an unsecure video link
-    Given I expand the publisher
-    When I click the publisher and post "http://mytube.com/watch?v=M3r2XDceM6A&format=json"
-    And I follow "My aspects"
-    Then I should not see a video player
-    And I should see "http://mytube.com/watch?v=M3r2XDceM6A&format=json" within ".stream_element"
-
   Scenario: Post an unsecure rich-typed link
     Given I expand the publisher
     When I click the publisher and post "http://myrichtube.com/watch?v=M3r2XDceM6A&format=json"

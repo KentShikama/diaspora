@@ -13,14 +13,6 @@
               %span.badge{id: "notification"}
                 = current_user.unread_notifications.size
 
-        -# Conversations
-        %li
-          = link_to conversations_path, class: "badge-link", id: "conversations-badge" do
-            %i.diaspora-custom-mail
-            - if current_user.unread_message_count > 0
-              %span.badge{id: "conversation"}
-                = current_user.unread_message_count
-
         -# Publisher
         %li
           = link_to new_status_message_path, class: "badge-link", id: "compose-badge" do

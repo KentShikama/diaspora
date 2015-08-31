@@ -1,7 +1,8 @@
-%footer.footer
-  .container
-    .pull-left
-      .powered-by-diaspora
-        =t("layouts.application.powered_by")
-    %ul#footer_nav.pull-right
-      = render :partial =>'shared/links'
+- unless current_page?(controller: "/home", action: "new")
+  %footer.footer
+    .container
+      .pull-left
+        .powered-by-diaspora
+          = t("layouts.application.powered_by")
+      %ul#footer_nav.pull-right
+        = render :partial =>'shared/links'

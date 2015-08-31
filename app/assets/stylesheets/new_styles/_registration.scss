@@ -1,10 +1,12 @@
+.page-registrations.action-new {
+  margin-bottom: 0;
+}
 #registration {
-  .ball {
-    height: 633px;
-    max-width: 100%;
-    background: image-url("branding/ball.png") no-repeat;
-    background-size: contain;
-  }
+  height:100vh;
+  min-height:100vh;
+  max-height:100vh;
+  background: image-url("tokyoskytree.jpg") no-repeat center center fixed;
+  background-size: cover;
 
   .v-center {
     display: table;
@@ -24,14 +26,15 @@
 
   form {
     max-width: 400px;
-
+    fieldset {
+      background-color: transparent;
+    }
     .captcha_img {
       position: absolute;
       left: 10px;
       width: 120px;
       top: 169px;
     }
-
     #user_captcha {
       font-size: 16px;
       height: 40px;
@@ -43,10 +46,12 @@
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
     }
-
-    #terms > a {
-      color: inherit;
-      text-decoration: underline;
+    #terms {
+      color: #000000;
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
     }
   }
 }
