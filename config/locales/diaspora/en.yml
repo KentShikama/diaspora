@@ -674,6 +674,9 @@ en:
         zero: "No dislikes"
         one: "%{count} dislike"
         other: "%{count} dislikes"
+    not_found: "Post or like not found"
+    create:
+      fail: "Like creation has failed"
 
   notifications:
     started_sharing:
