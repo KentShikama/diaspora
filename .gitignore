@@ -86,3 +86,4 @@ diaspora.iml
 
 # Dolphin's directory's preferences files
 *.directory
+node_modules

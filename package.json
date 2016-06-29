@@ -1,0 +1,12 @@
+{
+  "name": "Diaspora",
+  "dependencies" : {
+    "browserify": "~10.2.4",
+    "browserify-incremental": "^3.0.1",
+    "matrix-js-sdk": "0.5.4"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  }
+}
