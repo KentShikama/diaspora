@@ -43,4 +43,3 @@
 //= require blueimp-gallery/blueimp-gallery-indicator
 //= require leaflet
 //= require api/authorization_page
-//= require matrix

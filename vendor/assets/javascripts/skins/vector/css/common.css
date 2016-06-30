@@ -1,0 +1,240 @@
+/*
+Copyright 2015, 2016 OpenMarket Ltd
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+html {
+    /* hack to stop overscroll bounce on OSX and iOS.
+       N.B. Breaks things when we have legitimate horizontal overscroll */
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    /* Open Sans lacks combining diacritics, so these will fall through
+       to the next font.  Helevetica's diacritics however do not combine
+       nicely with Open Sans (on OSX, at least) and result in a huge
+       horizontal mess.  Arial empirically gets it right, hence prioritising
+       Arial here. */
+    font-family: 'Open Sans', Arial, Helvetica, Sans-Serif;
+    font-size: 15px;
+    color: #454545;
+    border: 0px;
+    margin: 0px;
+}
+
+div.error {
+    color: red;
+}
+
+h2 {
+    color: #454545;
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+a:hover,
+a:link,
+a:visited {
+    color: #76cfa6;
+}
+
+input[type=text]:focus, textarea:focus {
+    border: 1px solid #76CFA6;
+    outline: none;
+    box-shadow: none;
+}
+
+/* applied to side-panels and messagepanel when in RoomSettings */
+.mx_fadable {
+    opacity: 1;
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -ms-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+}
+
+/* XXX: critical hack to GeminiScrollbar to allow them to work in FF 42 and Chrome 48.
+   Stop the scrollbar view from pushing out the container's overall sizing, which causes
+   flexbox to adapt to the new size and cause the view to keep growing.
+ */
+.gm-scrollbar-container .gm-scroll-view {
+    position: absolute;
+}
+
+/* hack to avoid accidental click-throughs if you miss the narrow scrollbar */
+.gm-scrollbar.-vertical {
+    border-left: 6px solid transparent;
+}
+
+.mx_ContextualMenu_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1.0;
+    z-index: 2000;
+}
+
+.mx_ContextualMenu {
+    border: 1px solid #a4a4a4;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #747474;
+    position: fixed;
+    z-index: 2001;
+    padding: 6px;
+}
+
+.mx_ContextualMenu_chevron_right {
+    padding: 12px;
+    position: absolute;
+    right: -21px;
+    top: 0px;
+}
+
+.mx_ContextualMenu_chevron_left {
+    padding: 12px;
+    position: absolute;
+    left: -21px;
+    top: 0px;
+}
+
+.mx_ContextualMenu_field {
+    padding: 3px 6px 3px 6px;
+    cursor: pointer;
+}
+
+.mx_ContextualMenu_spinner {
+    display: block;
+    margin: 0 auto;
+}
+
+.mx_Dialog_wrapper {
+    position: fixed;
+    z-index: 4000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.mx_Dialog {
+    background-color: #fff;
+    color: #747474;
+    text-align: center;
+    z-index: 4010;
+    font-weight: 300;
+    font-size: 15px;
+    position: relative;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.mx_Dialog_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.2;
+}
+
+.mx_Dialog_lightbox .mx_Dialog_background {
+    opacity: 0.85;
+}
+
+.mx_Dialog_lightbox .mx_Dialog {
+    border-radius: 0px;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    pointer-events: none;
+}
+
+.mx_Dialog_content {
+    margin: 24px;
+}
+
+.mx_Dialog_buttons {
+    padding-bottom: 24px;
+}
+
+.mx_Dialog button, .mx_Dialog input[type="submit"] {
+    border: 0px;
+    height: 36px;
+    border-radius: 36px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+    background-color: #76cfa6;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.mx_Dialog_title {
+    min-height: 16px;
+    padding: 12px;
+    border-bottom: 1px solid #a4a4a4;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.mx_TextInputDialog_label {
+    text-align: left;
+    padding-bottom: 12px;
+}
+
+.mx_TextInputDialog_input {
+    font-size: 15px;
+    border-radius: 3px;
+    border: 1px solid #f0f0f0;
+    padding: 9px;
+    color: #454545;
+    background-color: #fff;
+}
+
+.emojione {
+    height: 1em;
+    vertical-align: middle;
+}
+
+::-moz-selection {
+    background-color: #76CFA6;
+    color: white;
+}
+
+::selection {
+    background-color: #76CFA6;
+    color: white;
+}

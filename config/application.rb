@@ -88,6 +88,8 @@ module Diaspora
       color_themes/*/mobile.css
     }
 
+    config.browserify_rails.commandline_options = "-t [ babelify --presets [ es2015 ] ]"
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
