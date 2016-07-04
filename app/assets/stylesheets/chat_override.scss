@@ -1,0 +1,18 @@
+.page-conversations.action-index {
+  background-color: transparent;
+}
+#conversations_container {
+  box-sizing: content-box;
+  padding-left: 0px;
+  padding-right: 0px;
+  max-width: none;
+}
+
+#conversations_container * {
+  box-sizing: content-box;
+}
+
+#matrixchat {
+  margin-top: 50px;
+}
+
