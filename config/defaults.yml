@@ -63,6 +63,10 @@ defaults:
         info: 'log/prosody.log'
         error: 'log/prosody.err'
         debug: false
+  matrix:
+    enabled: false
+    access_token: 
+    listener_url: 'http://localhost:8008'
   map:
     mapbox:
       enabled: false

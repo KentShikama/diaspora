@@ -267,6 +267,67 @@ configuration: ## Section
         ## The debug level logs all XML sent and received by the server.
         #debug: false
 
+  ## Experimental: Settings for Matrix (a decentralized messaging protocol)
+  ##
+  ## This is an experimental chat service that replaces the current Conversations and XMPP chat.
+  ## You will have to run your own Matrix home server with the same Matrix server_name as your Diaspora pod url
+  ## which will require at least another 512MB of RAM. This will also involve proxying all
+  ## requests to /_matrix/ to your Matrix home server's listener_url.
+  ## An example with Nginx:
+  ##
+  ##     # Within a 443 ssl server block
+  ##     location /_matrix/ {
+  ##         proxy_set_header X-Real-IP $remote_addr;
+  ##         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  ##         proxy_set_header X-Forwarded-Proto https;
+  ##         proxy_set_header Host $http_host;
+  ##         proxy_redirect off;
+  ##         proxy_pass http://localhost:8008; # Or whatever you listener_url is
+  ##     }
+  ##
+  ## For set up instructions see https://github.com/matrix-org/synapse#synapse-installation
+  ##
+  ## You must create a new Application Service configuration file for Diaspora and
+  ## add it to the list specified under the
+  ## app_service_config_files config option in your synapse config.
+  ## See https://github.com/matrix-org/synapse/blob/master/docs/application_services.rst
+  ##
+  ## An example configuration is shown below:
+  ##
+  ## id: "diaspora" # Just an identifier
+  ## url: "localhost:3000" # Your pod url
+  ## as_token: "your_access_token" # Will become your access_token below
+  ## hs_token: "anything" # Is not actually used right now
+  ## sender_localpart: "anything" # Just an identifier
+  ## namespaces:
+  ##   users: [] # Leave as blank array
+  ##   aliases: []  # Leave as blank array
+  ##   rooms: [] # Leave as blank array
+  ##
+  ## You must also replace your synapse config's password_config pepper value
+  ## with Diaspora's pepper value which by default is
+  ## "065eb8798b181ff0ea2c5c16aee0ff8b70e04e2ee6bd6e08b49da46924223e39127d5335e466207d42bf2a045c12be5f90e92012a4f05f7fc6d9f3c875f4c95b"
+  ## and replace your synapse config's bcrypt_rounds with 10
+  ##
+  ## Diaspora will handle registration and authentication for Synapse.
+  ## Your pod users will be able to login to any Matrix client to
+  ## your home server using their Diaspora credentials (@username:pod_url)
+  matrix: ## Section
+
+    ## Enable Matrix (default=false)
+    ## Note this will remove the conversations page and replace it with
+    ## a modified version of Vector-web that acts as a client for Matrix
+    # enabled: true
+
+    ## Please copy over the value you set as your as_token
+    ## from your Application Service configuration file for Diaspora
+    # access_token: 'youraccesstoken'
+
+    ## Where your Matrix home server will be listening for requests (default=http://localhost:8008)
+    ## If you are running your home server on the same host machine
+    ## as your Diaspora pod, this will most likely be http://localhost:8008.
+    # listener_url: "http://localhost:8008"
+
   ## Displays the location of a post in a map. Per default we are using the map
   ## tiles of the Heidelberg University (http://giscience.uni-hd.de).
   ## You also have the possibility to use the map tiles of https://www.mapbox.com
