@@ -187,6 +187,7 @@ Diaspora::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tokens, :only => [:create, :destroy]
+      resources :matrix, only: %i(create)
     end
   end
 

@@ -38,6 +38,9 @@
     = translation_missing_warnings
     = current_user_atom_tag
 
+    - if AppConfig.matrix.enabled?
+      = javascript_include_tag :matrix
+
     = yield(:head)
     = csrf_meta_tag
 
