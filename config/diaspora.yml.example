@@ -270,7 +270,7 @@ configuration: ## Section
   ## Experimental: Settings for Matrix (a decentralized messaging protocol)
   ##
   ## This is an experimental chat service that replaces the current Conversations and XMPP chat.
-  ## You will have to run your own Matrix home server with the same Matrix server_name as your Diaspora pod url
+  ## You will have to run your own Matrix home server with the same server_name as your Diaspora pod url
   ## which will require at least another 512MB of RAM. This will also involve proxying all
   ## requests to /_matrix/ to your Matrix home server's listener_url.
   ## An example with Nginx:
@@ -326,6 +326,7 @@ configuration: ## Section
     ## Where your Matrix home server will be listening for requests (default=http://localhost:8008)
     ## If you are running your home server on the same host machine
     ## as your Diaspora pod, this will most likely be http://localhost:8008.
+    ## Otherwise this will be your Matrix home server url
     # listener_url: "http://localhost:8008"
 
   ## Displays the location of a post in a map. Per default we are using the map
