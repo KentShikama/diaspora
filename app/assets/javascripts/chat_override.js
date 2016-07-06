@@ -4,5 +4,5 @@ $(document).ready(function () {
   $(window).trigger('resize');
 });
 $(window).resize(function() {
-  $('#matrixchat').height($(window).height() - 102); // 102 = 50 (Header) + 52 (Footer)
+  $('#matrixchat').height($(window).height() - 50); // 50px for the header offset
 });
