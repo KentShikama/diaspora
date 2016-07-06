@@ -10,7 +10,7 @@ $(document).ready(function() {
           if (gon.appConfig.server.rails_environment == "development") {
             localStorage.setItem("mx_hs_url", gon.appConfig.matrix.listener_url);
           } else {
-            localStorage.setItem("mx_hs_url", data['home_server']);
+            localStorage.setItem("mx_hs_url", "https://" + data['home_server']);
           }
         } else {
           console.error('No matrix access token found!');
