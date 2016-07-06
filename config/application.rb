@@ -75,6 +75,9 @@ module Diaspora
       jquery-textchange.js
       main.js
       jsxc.js
+      matrix.js
+      diaspora-vector-web.js
+      chat_override.js
       mobile/mobile.js
       people.js
       publisher.js
@@ -86,6 +89,8 @@ module Diaspora
       rtl.css
       color_themes/*/desktop.css
       color_themes/*/mobile.css
+      diaspora-vector-web.css
+      chat_override.css
     }
 
     # Version of your assets, change this if you want to expire all your assets
