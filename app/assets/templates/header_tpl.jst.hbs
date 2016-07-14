@@ -24,7 +24,7 @@
             <li>
               <a href="/conversations" title="{{t "header.conversations"}}" class="conversations-link nav-badge">
                 <i class="entypo-mail"></i>
-                <span class="badge badge-important {{#unless current_user.unread_messages_count}} hidden {{/unless}}">
+                <span class="badge badge-important unread-messages-counter {{#unless current_user.unread_messages_count}} hidden {{/unless}}">
                   {{current_user.unread_messages_count}}
                 </span>
               </a>
@@ -78,7 +78,7 @@
             <li>
               <a id="conversations-link" href="/conversations" title="{{t "header.conversations"}}" class="conversations-link nav-badge hidden-sm hidden-xs">
                 <i class="entypo-mail"></i>
-                <span class="badge badge-important {{#unless current_user.unread_messages_count}} hidden {{/unless}}">
+                <span class="badge badge-important unread-messages-counter {{#unless current_user.unread_messages_count}} hidden {{/unless}}">
                   {{current_user.unread_messages_count}}
                 </span>
               </a>
