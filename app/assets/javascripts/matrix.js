@@ -1,14 +1,15 @@
 var localStorage = window.localStorage;
 // the filter to pass to the homeserver
-// matrix docs recommend creating a filter using the filter API for these situations; might want to do that
-var filter = '{"event_fields":[],"account_data":{"types":[]},"presence":{"types":[]},' + 
+// potential TODO: matrix docs recommend creating a filter using the filter API for these situations
+// although the reason given is that sending the filter every time is too much overhead and ours is pretty short
+var filter = '{"event_fields":[],"account_data":{"types":[]},"presence":{"types":[]},' +
     '"room":{"account_data":{"types":[]},"timeline":{"limit":1},"ephemeral":{"types":[]},"state":{"types":[]}}}';
 
 // a function to update the unread messages displayed by the mail icon
-function updateUnreadCounter(counter, oldval){
+function updateUnreadCounter(counter, oldval) {
   // find the counter elements if they are not passed as an argument
-  counter = typeof(counter) !== "undefined" ? counter : $(".unread-messages-counter");
-  oldval = typeof(oldval) !== "undefined" ? oldval : 0; // default old value is assumed to be 0
+  counter = typeof counter !== "undefined" ? counter : $(".unread-messages-counter");
+  oldval = typeof oldval !== "undefined" ? oldval : 0; // default old value is assumed to be 0
   var url = localStorage.getItem("mx_hs_url"); // homeserver address
   var token = localStorage.getItem("mx_access_token"); // user's access token
 
@@ -20,10 +21,12 @@ function updateUnreadCounter(counter, oldval){
 
   // get /_matrix/client/r0/sync from the homeserver, then count all unread notifications and update the page
   $.getJSON(url + "/_matrix/client/r0/sync?access_token=" + token + "&filter=" + filter, function(result, status) {
-    if (status === "success") { // if the request succeeded
+    if (status === "success") {
       var counterVal = 0; // notification count
       $.each(result.rooms.join, function(name, room) { // for each room the user has joined
-        counterVal += room.unread_notifications.notification_count; // add to the count
+        if (room.unread_notifications.notification_count != undefined) { // which has a notification count
+          counterVal += room.unread_notifications.notification_count; // add to the total count
+        }
       });
 
       if (oldval !== counterVal) { // update page if necessary
@@ -61,7 +64,7 @@ $(document).ready(function() {
 
     // set updateUnreadCounter to execute when the document is ready
     // the wrapper function is to ignore the argument jQuery tries to pass
-    $(function(){updateUnreadCounter();});
+    $(function() { updateUnreadCounter(); });
   } else {
     localStorage.removeItem("mx_user_id");
     localStorage.removeItem("mx_access_token");
