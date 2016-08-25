@@ -95,6 +95,8 @@ gem "jquery-ui-rails",   "5.0.5"
 gem "js_image_paths",    "0.1.0"
 gem "js-routes",         "1.2.9"
 
+gem 'diaspora-vector-web', git: "https://github.com/KentShikama/vector-web", branch: "diaspora"
+
 source "https://rails-assets.org" do
   gem "rails-assets-jquery",                              "2.2.1" # Should be kept in sync with jquery-rails
 

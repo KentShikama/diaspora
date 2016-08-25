@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/KentShikama/vector-web
+  revision: cd3557ebd4bd8d7cd604afc867702d4571ddbcbb
+  branch: diaspora
+  specs:
+    diaspora-vector-web (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -934,6 +941,7 @@ DEPENDENCIES
   devise-token_authenticatable (= 0.5.2)
   devise_lastseenable (= 0.0.6)
   diaspora-prosody-config (= 0.0.5)
+  diaspora-vector-web!
   diaspora_federation-rails (= 0.1.4)
   diaspora_federation-test (= 0.1.4)
   entypo-rails (= 3.0.0.pre.rc2)
